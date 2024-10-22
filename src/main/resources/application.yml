@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/websocket
+    url: jdbc:postgresql://localhost:5432/prod_db
     username: abcd
     password: abcd
     driver-class-name: org.postgresql.Driver
