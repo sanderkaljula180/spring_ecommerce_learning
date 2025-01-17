@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     public User registerUser(User user) {
 
         // Assign default role to the user
-        Role userRole = roleRepository.findById("USER")
+        Role userRole = roleRepository.findByName("USER")
                 .orElseGet(() -> {
                    // Create default USER role if it doesnt exist
                    Role newUserRole = new Role();
