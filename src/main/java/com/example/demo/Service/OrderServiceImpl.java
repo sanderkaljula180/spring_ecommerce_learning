@@ -3,9 +3,7 @@ package com.example.demo.Service;
 import com.example.demo.model.Order;
 import com.example.demo.model.OrderItem;
 import com.example.demo.model.Product;
-import com.example.demo.model.User;
 import com.example.demo.model.dto.OrderDTO;
-import com.example.demo.model.dto.OrderItemDTO;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -14,8 +12,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl implements OrderService {

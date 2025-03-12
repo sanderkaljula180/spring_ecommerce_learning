@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.Service.OrderServiceImpl;
-import com.example.demo.model.Order;
 import com.example.demo.model.dto.OrderDTO;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
-    private OrderServiceImpl orderService;
+    private final OrderServiceImpl orderService;
 
     public OrderController(OrderServiceImpl orderService) {
         this.orderService = orderService;
