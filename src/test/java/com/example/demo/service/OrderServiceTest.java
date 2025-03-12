@@ -7,8 +7,6 @@ import com.example.demo.model.Product;
 import com.example.demo.model.User;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.repository.ProductRepository;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,9 +17,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class OrderServiceTest {

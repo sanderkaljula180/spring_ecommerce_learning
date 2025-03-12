@@ -1,7 +1,6 @@
 package com.example.demo.Service;
 
 import com.example.demo.model.Order;
-import com.example.demo.model.Product;
 import com.example.demo.model.dto.OrderDTO;
 
 import java.util.List;
