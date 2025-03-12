@@ -2,6 +2,7 @@ package com.example.demo.Service;
 
 import com.example.demo.model.Order;
 import com.example.demo.model.Product;
+import com.example.demo.model.dto.OrderDTO;
 
 import java.util.List;
 
@@ -10,10 +11,10 @@ public interface OrderService {
     /**
      * Places a new order, handling stock deduction and validation.
      *
-     * @param order The order to place.
+     * @param orderDTO The order to place.
      * @return The placed order.
      */
-    Order placeOrder(Order order);
+    OrderDTO placeOrder(OrderDTO orderDTO);
 
     /**
      * Retrieves order placed by existing user ID
@@ -22,4 +23,6 @@ public interface OrderService {
      * @return A list of users orders
      */
     List<Order> getOrdersByUserId(Long userId);
+
+    // Remove order
 }

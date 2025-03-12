@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: Order API
+  description: API for managing orders
+  version: 1.0.0
+paths:
+  /order/add-order:
+    post:
+      summary: Place a new order
+      operationId: placeOrder
+      tags:
+        - order
+      requestBody:
+        description: Order details
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/component/schemas/OrderDTO'
+      responses:
+        '201':
+          description: Order successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDTO'
+components:
+  schemas:
+    OrderDTO:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          description: List of order items
+          items:
+            $ref: '#/components/schemas/OrderItemDTO'
+    OrderItemDTO:
+      type: object
+      required:
+        - id
+        - quantity
+      properties:
+        id:
+          type: Long
+          description: Ordered item id
+        quantity:
+          type: int
+          description: Ordered item quantity
+
+

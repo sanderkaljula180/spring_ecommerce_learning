@@ -7,6 +7,8 @@ import com.example.demo.model.Product;
 import com.example.demo.model.User;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.repository.ProductRepository;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -45,7 +47,7 @@ public class OrderServiceTest {
         product1.setQuantity(10);
 
         Product product2 = new Product();
-        product1.setId();
+        product1.setId(Long.valueOf(1));
         product1.setPrice(BigDecimal.valueOf(200));
         product1.setQuantity(10);
 
@@ -70,7 +72,7 @@ public class OrderServiceTest {
 
 
 
-        when()
+
 
 
 

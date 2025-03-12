@@ -4,65 +4,8 @@ TODO:
 -- OrderServiceTest
 -- ProductServiceTest
 
-- Teha valmis authenticate pool
---- Uuri erinevaid meetodeid
-
-- Kuidas lugeda koodi. Suur pilt
-https://github.com/shopizer-ecommerce/shopizer/tree/main
-
-REMINDERS:
-a) Ehita iseseisev „mini-ökosüsteem“
-Kombineeri Spring Boot, PostgreSQL, Liquibase, RabbitMQ ja Docker ühes projektis.
-Näiteks loo lihtne mikroteenus, mis salvestab andmeid PostgreSQL-i, teeb migratsioone Liquibase’iga ja suhtleb RabbitMQ kaudu.
-Paki kõik Dockeri konteineritesse (sh RabbitMQ, PostgreSQL) ja kirjuta lühike dokumentatsioon.
-b) Front-end Vue.js-iga
-Vii projektis kasutajaliidese osa ellu Vue.js ja TypeScriptiga.
-Kasuta näiteks Vue CLI või Vite’i, et luua eraldi front-end, mis suhtleb Spring Booti back-endiga (REST API).
-c) Katseta Kubernetesega
-Kui tunned Dockeri juba piisavalt selgeks, proovi Kubernetese klastrit (minikube, kind või Docker Desktopi sisseehitatud K8s).
-Sätt oma rakendus klastrisse ja püüa lahendada näiteks „rolling update’i“, andmete püsivuse (persistent volumes) või skaleerimise teemasid.
-Miks see kõik kasulik on? Sa saad praktilise, „käegakatsutava“ kogemuse, mida on CV-s hea välja tuua. Veel parem, kui avaldad projekti GitHubis/GitLabis, et tööandjal oleks võimalik sinu koodi reaalset kvaliteeti näha.
-
-2. Tutvu finantsinfosüsteemide ja mikroteenuste eripäradega
-Finantstarkvara puhul on väga oluline turvalisus (access control, andmete krüpteerimine), logimine, jälgitavus (audit log) ning töökindlus.
-Kui saad, katseta Spring Security-t, et näidata, et oled kursis autentimise/autoriseerimise parimate praktikatega.
-Uuri, kuidas ehitada mikroteenuseid (Spring Cloud, service discovery, API Gateway, conf server jms). Sinu projektid ei pea olema suured, aga tähtis on aru saada, kuidas mikroteenused omavahel suhtlevad (nt RabbitMQ, REST, gRPC).
-3. Õpi X-tee teenuste ja GIS-projektide kohta (kui võimalik)
-Kuigi see võib tunduda alguses keeruline, tasub X-teega natuke tutvust teha – RIA X-tee lehel on dokumentatsiooni, testkeskkond jne.
-GIS-iga (nt OpenLayers, GeoServer) tasub vähemalt põgusalt tutvuda, et teaksid, kuidas ruumiandmeid serveris hoitakse või vahendatakse (WMS, WFS standardid).
+-- Auth tee valmis. Password encouder sammuti kasutajale kui kasutaja teeb. Pean vist security ennem ara tegema
+siis vahemalt saad ma ilusti authenticated kasutaja poolt saata requeste
 
 
-
-Thought about preparing for the job interview for a couple of seconds
-Kindlasti on sul juba hea algus tehtud, kui oled hakanud õppima Springi, PostgreSQL-d, Liquibase’i, TypeScripti, Vue.js-i, RabbitMQ-d ning Dockeri/Kubernetese tehnoloogiaid. Et tööandja veenduks, et suudad päriselt ka nendega töötada, soovitan keskenduda nii praktilisele kogemusele kui ka sellele, kuidas oma oskused selgelt (ja võimalikult konkreetselt) välja tuua.
-
-Allpool on mõned soovitused, kuidas oma profiili tugevdada ning kandideerimisprotsessiks paremini ette valmistuda:
-
-1. Rakenda oma õpitut praktilistes projektides
-a) Ehita iseseisev „mini-ökosüsteem“
-Kombineeri Spring Boot, PostgreSQL, Liquibase, RabbitMQ ja Docker ühes projektis.
-Näiteks loo lihtne mikroteenus, mis salvestab andmeid PostgreSQL-i, teeb migratsioone Liquibase’iga ja suhtleb RabbitMQ kaudu.
-Paki kõik Dockeri konteineritesse (sh RabbitMQ, PostgreSQL) ja kirjuta lühike dokumentatsioon.
-b) Front-end Vue.js-iga
-Vii projektis kasutajaliidese osa ellu Vue.js ja TypeScriptiga.
-Kasuta näiteks Vue CLI või Vite’i, et luua eraldi front-end, mis suhtleb Spring Booti back-endiga (REST API).
-c) Katseta Kubernetesega
-Kui tunned Dockeri juba piisavalt selgeks, proovi Kubernetese klastrit (minikube, kind või Docker Desktopi sisseehitatud K8s).
-Sätt oma rakendus klastrisse ja püüa lahendada näiteks „rolling update’i“, andmete püsivuse (persistent volumes) või skaleerimise teemasid.
-Miks see kõik kasulik on? Sa saad praktilise, „käegakatsutava“ kogemuse, mida on CV-s hea välja tuua. Veel parem, kui avaldad projekti GitHubis/GitLabis, et tööandjal oleks võimalik sinu koodi reaalset kvaliteeti näha.
-
-2. Tutvu finantsinfosüsteemide ja mikroteenuste eripäradega
-Finantstarkvara puhul on väga oluline turvalisus (access control, andmete krüpteerimine), logimine, jälgitavus (audit log) ning töökindlus.
-Kui saad, katseta Spring Security-t, et näidata, et oled kursis autentimise/autoriseerimise parimate praktikatega.
-Uuri, kuidas ehitada mikroteenuseid (Spring Cloud, service discovery, API Gateway, conf server jms). Sinu projektid ei pea olema suured, aga tähtis on aru saada, kuidas mikroteenused omavahel suhtlevad (nt RabbitMQ, REST, gRPC).
-3. Õpi X-tee teenuste ja GIS-projektide kohta (kui võimalik)
-Kuigi see võib tunduda alguses keeruline, tasub X-teega natuke tutvust teha – RIA X-tee lehel on dokumentatsiooni, testkeskkond jne.
-GIS-iga (nt OpenLayers, GeoServer) tasub vähemalt põgusalt tutvuda, et teaksid, kuidas ruumiandmeid serveris hoitakse või vahendatakse (WMS, WFS standardid).
-4. Tugevda oma CV-d / Portfolio’d
-Tee GitHubi (või GitLabi, Bitbucketi) konto ja pane sinna oma koodiprojektid (või lingid neile).
-Lisa lühike README fail, mis selgitab, mis tehnoloogiad projektis kasutusel on ja kuidas seda käivitada.
-Selline praktiline „koodinäidis“ on tihti suurem väärtus kui lihtsalt kursuse- või sertifikaadinimekiri.
-5. Näita, et oskad kvaliteeti jälgida
-Testimine: kasuta JUnit / Testcontainers, et testida oma Spring Boot + PostgreSQL + RabbitMQ rakendust.
-Koodi puhtus: võid rakendada SonarQube’i (või GitHubi CodeQL) analüüsi, et demonstreerida koodikvaliteedi jälgimist.
-Logimine, jälgitavus: integreeri ELK (Elasticsearch, Logstash, Kibana) või Graylog, et näidata, et saad logisid koondada ja neid analüüsida.
+-- pean kasutama DTO sest ta saadab igast sitta lisaks veel tagasi front endi jsoniga

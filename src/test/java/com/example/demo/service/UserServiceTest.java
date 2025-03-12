@@ -45,6 +45,7 @@ public class UserServiceTest {
         Role userRole = new Role();
         userRole.setName("USER");
 
+        // samas jarjekorras nagu meetod mida testitakse
         when(userRepository.save(any(User.class))).thenReturn(user);
         when(roleRepository.findByName("USER")).thenReturn(Optional.of(userRole));
         when(passwordEncoder.encode("password1")).thenReturn("encoded_password");

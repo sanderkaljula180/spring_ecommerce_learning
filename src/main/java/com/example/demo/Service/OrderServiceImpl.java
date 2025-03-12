@@ -4,12 +4,18 @@ import com.example.demo.model.Order;
 import com.example.demo.model.OrderItem;
 import com.example.demo.model.Product;
 import com.example.demo.model.User;
+import com.example.demo.model.dto.OrderDTO;
+import com.example.demo.model.dto.OrderItemDTO;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.repository.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -23,30 +29,38 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order placeOrder(Order order) {
-        for (OrderItem item : order.getOrderItems()) {
-            // Retrieve the product to update stock
-            Product product = productRepository.findById(item.getProduct().getId())
-                    .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+    public OrderDTO placeOrder(OrderDTO orderDTO) {
+        Order order = new Order();
 
-            // Deduct the ordered quantity from stock
-            int updateQuantity = product.getQuantity() - item.getQuantity();
-            if (updateQuantity < 0) {
-                throw new IllegalArgumentException("Insufficient stock for product: " + product.getName());
-            }
+        List<OrderItem> orderItems = orderDTO.getOrderItems().stream()
+                .map(orderItemDTO -> {
+                   OrderItem orderItem = new OrderItem();
+                   Product product = productRepository.findById(orderItemDTO.getId())
+                           .orElseThrow(() -> new EntityNotFoundException("Product not found"));
 
-            // Update the product in the repository
-            product.setQuantity(updateQuantity);
-            productRepository.save(product);
+                   product.setQuantity(Math.max(0, product.getQuantity() - orderItemDTO.getQuantity()));
+                   if (product.getQuantity() < 0) {
+                       throw new IllegalArgumentException("Insufficient stock for product: " + product.getName());
+                   }
+                   productRepository.save(product);
 
-            // Set the product in the order item. Also add dateTime and get user
-            item.setOrder(order);
-
-        }
+                   orderItem.setProduct(product);
+                   orderItem.setQuantity(orderItemDTO.getQuantity());
+                   orderItem.setPrice(product.getPrice().multiply(new BigDecimal(orderItemDTO.getQuantity())));
+                   orderItem.setOrder(order);
+                return orderItem;
+                }).toList();
 
         order.setOrderDate(LocalDateTime.now());
+        order.setOrderItems(orderItems);
 
-        return orderRepository.save(order);
+        // NOW WE SHOULD CREATE SECURITY BECAUSE THIS
+        //order.setUser(User JWT token or something);
+
+        //order.setOrderDate(LocalDateTime.now());
+
+        //return orderRepository.save(order);
+        return null;
     }
 
     @Override

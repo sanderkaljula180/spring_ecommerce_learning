@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
                 });
         user.setRoles(Collections.singleton(userRole));
 
-        // Encode the users password for security
+        // Encode the users password for security. This needs fixing
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // Save the user to the database
