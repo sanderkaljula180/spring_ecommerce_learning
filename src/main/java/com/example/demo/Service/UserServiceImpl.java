@@ -2,8 +2,10 @@ package com.example.demo.Service;
 
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
+import com.example.demo.model.dto.UserDTO;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.utility.UserComponents;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,34 +17,26 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final UserComponents userComponents;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, UserComponents userComponents) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
+        this.userComponents = userComponents;
     }
 
     @Override
-    public User registerUser(User user) {
+    public void registerUser(UserDTO userDTO) {
 
-        // Assign default role to the user
-        Role userRole = roleRepository.findByName("USER")
-                .orElseGet(() -> {
-                   // Create default USER role if it doesnt exist
-                   Role newUserRole = new Role();
-                   newUserRole.setName("USER");
-                   return roleRepository.save(newUserRole);
-                });
-        user.setRoles(Collections.singleton(userRole));
+        User user = userComponents.processUserRegistration(userDTO, Role.REGULAR_USER_ROLE);
+        userRepository.save(user);
+    }
 
-        // Encode the users password for security. This needs fixing
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    @Override
+    public void registerAdminUser(UserDTO userDTO) {
 
-        // Save the user to the database
-        return userRepository.save(user);
+        User user = userComponents.processUserRegistration(userDTO, Role.ADMIN_USER_ROLE);
+        userRepository.save(user);
     }
 
     @Override
